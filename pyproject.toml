@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "homework-20-11111"
+version = "0.1.0"
+description = ""
+authors = ["Aleksei Prusikov <imemphatic@yandex.ru>"]
+readme = "README.md"
+packages = [{include = "homework_20"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.1.4"
+psycopg2-binary = "^2.9.10"
+black = "^24.10.0"
+pillow = "^11.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
