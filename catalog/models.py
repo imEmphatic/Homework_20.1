@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 
 NULLABLE = {"blank": True, "null": True}
@@ -32,9 +34,12 @@ class Product(models.Model):
         verbose_name="Цена за покупку", help_text="Введите цену покупки (целое число)"
     )
     created_at = models.DateField(
-        verbose_name="Дата создания", help_text="Дата создания (записи в БД)"
+        default=datetime.now,
+        verbose_name="Дата создания",
+        help_text="Дата создания (записи в БД)",
     )
     updated_at = models.DateField(
+        default=datetime.now,
         verbose_name="Дата последнего изменения",
         help_text="Дата последнего изменения (записи в БД)",
     )
