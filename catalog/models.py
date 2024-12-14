@@ -1,12 +1,12 @@
 from datetime import datetime
-
 from django.db import models
+from decimal import Decimal
 
 NULLABLE = {"blank": True, "null": True}
 
 
 class Product(models.Model):
-    """создаем модель для продуктов"""
+    """Создаем модель для продуктов."""
 
     name = models.CharField(
         max_length=100,
@@ -30,16 +30,19 @@ class Product(models.Model):
         **NULLABLE,
         related_name="products",
     )
-    price = models.IntegerField(
-        verbose_name="Цена за покупку", help_text="Введите цену покупки (целое число)"
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name="Цена за покупку",
+        help_text="Введите цену покупки (в рублях)",
     )
     created_at = models.DateField(
-        default=datetime.now,
+        auto_now_add=True,
         verbose_name="Дата создания",
         help_text="Дата создания (записи в БД)",
     )
     updated_at = models.DateField(
-        default=datetime.now,
+        auto_now=True,
         verbose_name="Дата последнего изменения",
         help_text="Дата последнего изменения (записи в БД)",
     )
@@ -50,14 +53,11 @@ class Product(models.Model):
     class Meta:
         verbose_name = "Товар"
         verbose_name_plural = "Товары"
-        ordering = (
-            "name",
-            "price",
-        )
+        ordering = ("name", "price")
 
 
 class Category(models.Model):
-    """создаем модель для категорий"""
+    """Создаем модель для категорий."""
 
     name = models.CharField(
         max_length=100,
